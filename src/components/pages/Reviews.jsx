@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { GetMoviesReviews } from '../GetAPI/GetAPI';
 
-export const Reviews = () => {
+const Reviews = () => {
   const params = useParams();
   const [reviewer, serReviewer] = useState([]);
   const { id } = params;
@@ -11,6 +11,9 @@ export const Reviews = () => {
   useEffect(() => {
     GetMoviesReviews(id).then(response => serReviewer(response.data.results));
   }, [id, serReviewer]);
+
+
+  if (reviewer.length === 0) return <h2>Reviewer not found</h2>;
 
   return (
     <>
@@ -26,3 +29,4 @@ export const Reviews = () => {
     </>
   );
 };
+export default Reviews;

@@ -53,14 +53,12 @@ export const Modal = () => {
       </div>
       <h3>Additional information</h3>
       <nav className={styles.link}>
-        <Link to="cast" key={id}>
-          Cast
-        </Link>
-        <Link to="reviews" key={id}>
-          Reviews
-        </Link>
+        <Link to="cast">Cast</Link>
+        <Link to="reviews">Reviews</Link>
       </nav>
       <Outlet />
     </>
   );
 };
+
+export default Modal;

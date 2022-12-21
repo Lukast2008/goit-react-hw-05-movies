@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import styles from '../styles.module.css';
 
-export const Cast = () => {
+const Cast = () => {
   const params = useParams();
   const [info, setInfo] = useState([]);
 
@@ -15,13 +15,12 @@ export const Cast = () => {
     GetMoviesByDetailed(id).then(response => setInfo(response.data.cast));
   }, [id, setInfo]);
 
+  if (info.length === 0) return (<h2>Cast not found</h2>);
   return (
     <>
       <h3>Cast</h3>
-
       <ul className={styles.listCast}>
-        {info.map(({ name, profile_path, character }) => (
-
+        { info.map(({ name, profile_path, character }) => (
           <li className={styles.listItemCast} key={nanoid()}>
             <img src={`${UrlImg}${profile_path}`} alt={name} width="150"></img>
             <span>{name}</span>
@@ -32,3 +31,4 @@ export const Cast = () => {
     </>
   );
 };
+export default Cast;

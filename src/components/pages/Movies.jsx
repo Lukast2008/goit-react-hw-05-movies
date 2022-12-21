@@ -35,7 +35,6 @@ const Movies = () => {
           <li key={id}>
             <Link to={`${id}`}>{title}</Link>
           </li>
-          
         ))}
       </ul>
       <Outlet />
@@ -43,4 +42,4 @@ const Movies = () => {
   );
 };
 
-export  default Movies
+export default Movies;

@@ -2,7 +2,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavItem = styled(NavLink)`
- 
   color: black;
 
   &.active {
@@ -10,7 +9,7 @@ const NavItem = styled(NavLink)`
   }
 `;
 
-  const Layout = () => {
+const Layout = () => {
   return (
     <>
       <nav>
@@ -21,4 +20,4 @@ const NavItem = styled(NavLink)`
     </>
   );
 };
-export default Layout
+export default Layout;
