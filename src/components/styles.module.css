@@ -1,0 +1,41 @@
+.mod {
+  display: flex;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.listItem {
+  margin-top: 20px;
+}
+
+.listTitle {
+  font-weight: 600;
+}
+
+.listCast {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.listItemCast {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 20px;
+  
+}
+.link{display: flex;
+gap: 20px;}
