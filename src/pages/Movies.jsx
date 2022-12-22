@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { GetSearchMovies } from '../GetAPI/GetAPI';
 
 const Movies = () => {
-  const [search, setSearch] = useState('');
-  const [getMovies, setGetMovies] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const username = searchParams.get('query');
+  const [search, setSearch] = useState(username);
   const [arr, setArr] = useState([]);
+  const location = useLocation();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    if (!getMovies) return;
-    GetSearchMovies(search)
-      .then(data => setArr([...data]), setGetMovies(true))
+    if (!username) return;
+
+    GetSearchMovies(username)
+      .then(data => {
+        setArr([...data]);
+      })
       .catch(console.log);
-  }, [getMovies, search]);
+  }, [username]);
 
   const handleChange = ev => {
     setSearch(ev.target.value);
@@ -20,8 +26,9 @@ const Movies = () => {
 
   const handleSubmit = ev => {
     ev.preventDefault();
-    setGetMovies(true);
+    setSearchParams({ query: search });
   };
+
 
   return (
     <>
@@ -33,7 +40,9 @@ const Movies = () => {
       <ul>
         {arr.map(({ title, id }) => (
           <li key={id}>
-            <Link to={`${id}`}>{title}</Link>
+            <Link to={`${id}`} state={location}>
+              {title}
+            </Link>
           </li>
         ))}
       </ul>

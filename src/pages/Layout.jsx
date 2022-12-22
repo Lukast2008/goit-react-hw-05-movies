@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const NavItem = styled(NavLink)`
   color: black;
+  background-color: aqua;
 
   &.active {
     color: orange;

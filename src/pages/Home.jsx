@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 
@@ -6,6 +6,7 @@ import { GetDataMovies } from '../GetAPI/GetAPI';
 
 const Home = () => {
   const [arr, setArr] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     GetDataMovies()
@@ -19,13 +20,13 @@ const Home = () => {
       <ul>
         {arr.map(({ original_title, id }) => (
           <li key={id}>
-            <Link to={`movies/${id}`} key={id}>
+            <Link to={`movies/${id}`}  state={location} key={id}>
               {original_title}
             </Link>
-            <Outlet />
           </li>
         ))}
       </ul>
+      <Outlet />
     </>
   );
 };
