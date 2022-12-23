@@ -1,8 +1,7 @@
-import { GetMoviesByDetailed } from '../GetAPI/GetAPI';
+import { GetMoviesByDetailed } from '../../GetAPI/GetAPI';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { nanoid } from 'nanoid';
-import styles from './styles.module.css';
+import styles from '../../pages/styles.module.css';
 
 const Cast = () => {
   const params = useParams();
@@ -20,8 +19,8 @@ const Cast = () => {
     <>
       <h3>Cast</h3>
       <ul className={styles.listCast}>
-        {info.map(({ name, profile_path, character }) => (
-          <li className={styles.listItemCast} key={nanoid()}>
+        {info.map(({ name, profile_path, character, id }) => (
+          <li className={styles.listItemCast} key={id}>
             {profile_path ? (
               <img
                 src={`${UrlImg}${profile_path}`}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { GetSearchMovies } from '../GetAPI/GetAPI';
 
 const Movies = () => {
@@ -8,6 +8,7 @@ const Movies = () => {
   const [search, setSearch] = useState(username);
   const [arr, setArr] = useState([]);
   const location = useLocation();
+  const [dis, setDis] = useState(true);
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const Movies = () => {
 
   const handleChange = ev => {
     setSearch(ev.target.value);
+    !ev.target.value ? setDis(true) : setDis(false);
   };
 
   const handleSubmit = ev => {
@@ -29,12 +31,13 @@ const Movies = () => {
     setSearchParams({ query: search });
   };
 
-
   return (
     <>
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={handleChange} />
-        <button type="submit">Search</button>
+        <button type="submit" disabled={dis}>
+          Search
+        </button>
       </form>
 
       <ul>
@@ -46,7 +49,6 @@ const Movies = () => {
           </li>
         ))}
       </ul>
-      <Outlet />
     </>
   );
 };
